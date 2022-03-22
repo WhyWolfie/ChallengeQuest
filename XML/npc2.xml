@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+
+<!--
+	collision.radius="50" 		// 충돌 실린더의 반지름
+	collision.height="170"		// 충돌 실린더의 높이
+	speed="600"					// 초당 최대 이동 거리
+	rotspeed="10.0"				// 초당 회전각(radian) - 너무 낮은 값으로 하면 제대로 길찾기를 못함
+-->
+
+<XML>
+<!-- knifeman (근데 사실 테스트용 고블린) -->
+<ACTOR name="knifeman"
+	   model="knifeman"
+	   ai.fsm="knifeman"
+	   max_hp="60"
+	   max_ap="60"
+	   collision.radius="50" 
+	   collision.height="170"
+	   speed="600"
+	   rotspeed="5.0"
+	   groggyRecoverPerSec="35"
+	   neverblasted="false"
+	   />
+
+</XML>

@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<XML id="scenario2">
+	<!-- 유저에게 보여질 시나리오이름과 클리어시 보상 뽑기 아이템 id-->
+	<SCENARIO name="test scenario 1" reward_item="1000012">
+		<!--섹터 목록을 차례대로 나열-->
+		<!--섹터의 맵 리소스 이름과 섹터 클리어시 보상 경험치 바운티-->
+		<SECTOR map="2" xp="500" bp="300">
+			<!--postag는 맥스에서 심은 스폰노드 이름(spawn_npc_는 제외),
+				num은 이 이름의 노드 갯수,
+			    actor는 스폰할 엔피씨 이름, drop은 드롭테이블-->
+			<SPAWN postag="1" num="1" actor="knifeman" drop="G11"/>
+			<!-- <SPAWN postag="2" num="1" actor="knifeman" drop="G11"/> -->
+		</SECTOR>
+		<SECTOR map="2" xp="500" bp="300">
+			<SPAWN postag="1" num="1" actor="knifeman" drop="G11"/>
+			<!-- <SPAWN postag="2" num="2" actor="knifeman" drop="G11"/> -->
+		</SECTOR>
+		<SECTOR map="2" xp="500" bp="300">
+			<SPAWN postag="1" num="1" actor="knifeman" drop="G11"/>
+			<!-- <SPAWN postag="2" num="2" actor="knifeman" drop="G11"/> -->
+		</SECTOR>
+		<SECTOR map="2" xp="500" bp="300">
+			<SPAWN postag="1" num="1" actor="knifeman" drop="G11"/>
+			<!-- <SPAWN postag="2" num="2" actor="knifeman" drop="G11"/> -->
+		</SECTOR>
+		<SECTOR map="2" xp="500" bp="300">
+			<SPAWN postag="1" num="1" actor="knifeman" drop="G11"/>
+			<!-- <SPAWN postag="2" num="2" actor="knifeman" drop="G11"/> -->
+		</SECTOR>
+	</SCENARIO>
+	<SCENARIO name="test scenario 2" reward_item="1000012">
+		<SECTOR map="2" xp="500" bp="300">
+			<SPAWN postag="1" num="4" actor="knifeman" drop="G11"/>
+			<SPAWN postag="2" num="4" actor="knifeman" drop="G11"/>
+		</SECTOR>
+		<SECTOR map="2" xp="500" bp="300">
+			<SPAWN postag="1" num="4" actor="knifeman" drop="G11"/>
+			<SPAWN postag="2" num="4" actor="knifeman" drop="G11"/>
+		</SECTOR>
+	</SCENARIO>
+</XML>

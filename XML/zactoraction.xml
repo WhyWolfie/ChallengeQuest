@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<XML>
+<!--> 
+	액션은 여러 npc가 공용으로 사용할 수 있다.
+	예를 들어 idle 액션인 경우는 그냥 대기 애니메이션을 재생해주는 것 뿐이므로
+	하나만 만들어두고 여러 npc에서 사용할 수 있을 것이다.
+	물론 idle 애니메이션이 존재하는 npc의 경우에만 가능하다.
+	
+	달리는 애니라던가 근접 공격을 하는 등의 액션도 마찬가지다.
+	달리기나 칼질 애니가 서로 다를 순 있지만 같은 이름으로 바인딩되었다면 같은 action을 사용할 수 있다.
+	
+	어떤 npc가 자신의 특수 스킬을 가지고 있다면 그런 스킬을 정의한 액션은 그 npc에서만 사용할 수 있겠지..
+	<ACTION name="rotateToTarget" animation="run" />
+	<ACTION name="runToTarget" animation="run" />
+</-->
+	<ACTION name="idle" animation="idle" />
+	<ACTION name="run" animation="run" />
+	<ACTION name="suffer1" animation="suffer1" movinganimation="true" />
+	<ACTION name="suffer2" animation="suffer2" movinganimation="true" />	
+	<ACTION name="suffer3" animation="suffer3" movinganimation="true" />
+	<ACTION name="suffer3recover" animation="suffer3recover" movinganimation="false" />
+	
+	<ACTION name="stepforward" animation="stepforward"  movinganimation="true" />
+	<ACTION name="stepbackward" animation="stepbackward"  movinganimation="true" />
+	<ACTION name="stepleft" animation="stepleft"  movinganimation="true" />
+	<ACTION name="stepright" animation="stepright"  movinganimation="true" />
+	
+	<ACTION name="charge" animation="charge" movinganimation="true" >
+			<MELEESHOT delay="666" damage="30" range="175" angle="30" pierce="50" sound="" />
+	</ACTION>
+	
+	<ACTION name="slash" animation="slash" movinganimation="true" >
+ 			<MELEESHOT delay="433" damage="20" range="125" angle="140" pierce="50" sound="" />
+	</ACTION>
+	
+</XML>

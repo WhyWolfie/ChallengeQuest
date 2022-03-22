@@ -1,0 +1,136 @@
+﻿<XML>
+
+<FSM name="knifeman" entrystate="idle">
+
+<!--좌우 스텝만 밟는 FSM
+ 	<STATE name="idle" cooltime="0" action="idle" func="">
+		<TRANS cond="hpEqual:0" next="__die"/>
+		<TRANS cond="timeElapsedSinceEntered:500" next="stepRight"/>
+		
+	</STATE>	
+	
+	<STATE name="stepRight" cooltime="500" action="stepright">
+		<TRANS cond="hpEqual:0" next="__die"/>
+		<TRANS cond="endAction" next="stepLeft"/>
+	</STATE>
+
+	<STATE name="stepLeft" cooltime="500" action="stepleft"> 
+		<TRANS cond="hpEqual:0" next="__die"/>
+		<TRANS cond="endAction" next="idle"/>
+	</STATE>
+	
+	<STATE name="afterblasted" cooltime="0">
+		<TRANS cond="hpEqual:0" next="__die"/>
+		<TRANS cond="default" next="idle"/>
+	</STATE> -->
+
+	<STATE name="idle" cooltime="0" action="idle" func="findTarget">
+		<TRANS cond="groggyGreater:30" next="suffer3"/>
+		<TRANS cond="hpEqual:0" next="__die"/>
+		<TRANS cond="groggyGreater:20" next="suffer2"/>
+		<TRANS cond="groggyGreater:10" next="suffer1"/>			
+		<TRANS cond="hasTarget" next="runToTarget"/>
+	</STATE>	
+	
+	<STATE name="runToTarget" cooltime="0" action="run" enterfunc="buildWaypointsToTarget" func="runWaypoints">
+		<TRANS cond="groggyGreater:30" next="suffer3"/>
+		<TRANS cond="hpEqual:0" next="__die"/>
+		<TRANS cond="groggyGreater:20" next="suffer2"/>
+		<TRANS cond="groggyGreater:10" next="suffer1"/>		
+		<TRANS cond="hasNoTarget" next="idle"/>
+		<TRANS cond="distTarget:0;500" next="combat"/>
+		<TRANS cond="timeElapsedSinceEntered:500" next="runToTarget"/>
+	</STATE>
+	
+	<STATE name="combat" cooltime="0" action="idle" func="dice">
+		<TRANS cond="groggyGreater:1" next="suffer3"/>
+		<TRANS cond="hpEqual:0" next="__die"/>
+		<TRANS cond="groggyGreater:20" next="suffer2"/>
+		<TRANS cond="groggyGreater:10" next="suffer1"/>		
+		<TRANS cond="hasNoTarget" next="idle"/>
+		<TRANS cond="dice:100,distTarget:400;800" next="stepForward"/>
+		<TRANS cond="distTarget:250;400" next="charge"/>
+		<TRANS cond="distTarget:0;200" next="slash"/>
+		<TRANS cond="dice:100,distTarget:0;250,isEmptySpace:180;200" next="stepBackward"/>		
+		<TRANS cond="dice:50" next="stepRight"/>
+		<TRANS cond="dice:50" next="stepLeft"/>		
+		<TRANS cond="timeElapsedSinceEntered:500" next="runToTarget"/>
+	</STATE>
+	
+	<STATE name="charge" cooltime="2000" action="charge" func="faceToTarget">
+		<TRANS cond="groggyGreater:30" next="suffer3"/>
+		<TRANS cond="hpEqual:0" next="__die"/>
+		<TRANS cond="endAction" next="combat"/>
+	</STATE>
+	
+	<STATE name="slash" cooltime="2000" action="slash" func="faceToTarget">
+		<TRANS cond="groggyGreater:30" next="suffer3"/>
+		<TRANS cond="hpEqual:0" next="__die"/>
+		<TRANS cond="endAction" next="combat"/>
+	</STATE>
+	
+	<STATE name="suffer1" cooltime="2000" action="suffer1" enterfunc="reduceGroggy:5">
+		<TRANS cond="groggyGreater:30" next="suffer3"/>
+		<TRANS cond="hpEqual:0" next="__die"/>
+		<TRANS cond="groggyGreater:20" next="suffer2"/>
+		<TRANS cond="endAction" next="idle"/>
+	</STATE>
+
+	<STATE name="suffer2" cooltime="3000" action="suffer2" enterfunc="reduceGroggy:10">
+		<TRANS cond="groggyGreater:30" next="suffer3"/>
+		<TRANS cond="hpEqual:0" next="__die"/>
+		<TRANS cond="endAction" next="idle"/>
+	</STATE>
+
+	<STATE name="suffer3" cooltime="4000" action="suffer3" enterfunc="reduceGroggy:15"> 
+		<TRANS cond="hpEqual:0" next="__die"/>
+		<TRANS cond="endAction" next="suffer3Recover"/>
+	</STATE>
+	
+	<STATE name="suffer3Recover" cooltime="0" action="suffer3recover" enterfunc="reduceGroggy:15"> 
+		<TRANS cond="hpEqual:0" next="__die"/>
+		<TRANS cond="endAction" next="idle"/>
+	</STATE>
+	
+
+	<STATE name="stepForward" cooltime="500" action="stepforward"> 
+		<TRANS cond="groggyGreater:30" next="suffer3"/>
+		<TRANS cond="hpEqual:0" next="__die"/>
+		<TRANS cond="groggyGreater:20" next="suffer2"/>
+		<TRANS cond="groggyGreater:10" next="suffer1"/>	
+		<TRANS cond="endAction" next="combat"/>
+	</STATE>
+
+	<STATE name="stepBackward" cooltime="500" action="stepbackward">
+		<TRANS cond="groggyGreater:30" next="suffer3"/>
+		<TRANS cond="hpEqual:0" next="__die"/>
+		<TRANS cond="groggyGreater:20" next="suffer2"/>
+		<TRANS cond="groggyGreater:10" next="suffer1"/>	
+		<TRANS cond="endAction" next="combat"/>
+	</STATE>
+
+	<STATE name="stepRight" cooltime="500" action="stepright">
+		<TRANS cond="groggyGreater:30" next="suffer3"/>
+		<TRANS cond="hpEqual:0" next="__die"/>
+		<TRANS cond="groggyGreater:20" next="suffer2"/>
+		<TRANS cond="groggyGreater:10" next="suffer1"/>	
+		<TRANS cond="endAction" next="combat"/>
+	</STATE>
+
+	<STATE name="stepLeft" cooltime="500" action="stepleft"> 
+		<TRANS cond="groggyGreater:30" next="suffer3"/>
+		<TRANS cond="hpEqual:0" next="__die"/>
+		<TRANS cond="groggyGreater:20" next="suffer2"/>
+		<TRANS cond="groggyGreater:10" next="suffer1"/>	
+		<TRANS cond="endAction" next="combat"/>
+	</STATE>
+		
+	<STATE name="afterblasted" cooltime="0">
+		<TRANS cond="hpEqual:0" next="__die"/>
+		<TRANS cond="default" next="idle"/>
+	</STATE>
+
+</FSM>
+
+</XML>
+
