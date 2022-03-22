@@ -1,5 +1,4 @@
 # ChallengeQuest
-Gunz The Duel ChallengeQuest
 ---------------------
 건즈 (GunZ: The Duel)
 ---------------------
